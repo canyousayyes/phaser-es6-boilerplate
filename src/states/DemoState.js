@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class DemoState extends Phaser.State {
 
 	constructor() {
@@ -5,6 +7,8 @@ class DemoState extends Phaser.State {
 		this._platforms = null;
 		this._player = null;
 		this._stars = null;
+		this._scoreText = null;
+		this._score = 0;
 	}
 
 	preload() {
@@ -49,14 +53,35 @@ class DemoState extends Phaser.State {
 		// Stars
 		let stars = this.game.add.group();
 		stars.enableBody = true;
-		for (let i = 0; i < 12; i++) {
+		_.times(12, (i) => {
+			let star = stars.create(i * 70, 0, 'star');
+			star.body.gravity.y = 120;
+			star.body.bounce.y = 0.2 + Math.random() * 0.2;
+		});
+		this._stars = stars;
 
-		}
+		// Score
+		this._scoreText = this.game.add.text(32, 32, this.getScoreText(), {
+			fontSize: '32px',
+			fill: '#000'
+		});
+	}
+
+	getScoreText() {
+		return `Score: ${this._score}`;
+	}
+
+	collectStar(player, star) {
+		star.kill();
+		this._score += 10;
+		this._scoreText.text = this.getScoreText();
 	}
 
 	update() {
 		// Collision
 		this.game.physics.arcade.collide(this._player, this._platforms);
+		this.game.physics.arcade.collide(this._stars, this._platforms);
+		this.game.physics.arcade.overlap(this._player, this._stars, this.collectStar, null, this);
 
 		// Movement Control
 		let cursors = this.game.input.keyboard.createCursorKeys();
