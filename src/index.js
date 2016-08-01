@@ -1,11 +1,11 @@
-import DemoState from 'states/DemoState';
+import BattleState from 'states/BattleState';
 
 class Game extends Phaser.Game {
 
 	constructor() {
-		super(800, 600, Phaser.AUTO, 'content', null);
-		this.state.add('DemoState', DemoState, false);
-		this.state.start('DemoState');
+		super(720, 1280, Phaser.AUTO, 'content', null);
+		this.state.add('BattleState', BattleState, false);
+		this.state.start('BattleState');
 	}
 
 }
