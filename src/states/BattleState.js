@@ -27,8 +27,11 @@ class BattleState extends Phaser.State {
 
     update() {
         this.game.physics.arcade.overlap(this._player, this._enemy.bullets, this.hitPlayerCallback, null, this);
+
         // Not using overlap() here since we need to update the parameters even when they are not overlapped
-        this.checkAuraEnemyDistance(this._player.aura, this._enemy);
+        if (this._player.alive && this._enemy.alive) {
+            this.checkAuraEnemyDistance(this._player.aura, this._enemy);
+        }
 
         this.game.debug.body(this._enemy);
         this.game.debug.body(this._player);
@@ -53,6 +56,7 @@ class BattleState extends Phaser.State {
 
         // then trigger both aura and enemy actions
         this._player.updateAuraAlpha(relativeDistance);
+        this._enemy.updateHealth(relativeDistance);
     }
 }
 
