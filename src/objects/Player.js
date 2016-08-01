@@ -9,7 +9,7 @@ class Player extends Phaser.Sprite {
         this.game.physics.arcade.enable(this);
         this.anchor.set(0.5);
         this.body.collideWorldBounds = true;
-        this.game.stage.addChild(this);
+        this.game.world.addChild(this);
     }
 
     get speed() {
