@@ -33,9 +33,9 @@ class BattleState extends Phaser.State {
             this.checkAuraEnemyDistance(this._player.aura, this._enemy);
         }
 
-        this.game.debug.body(this._enemy);
-        this.game.debug.body(this._player);
-        this.game.debug.body(this._player.aura);
+        // this.game.debug.body(this._enemy);
+        // this.game.debug.body(this._player);
+        // this.game.debug.body(this._player.aura);
     }
 
     hitPlayerCallback() {
