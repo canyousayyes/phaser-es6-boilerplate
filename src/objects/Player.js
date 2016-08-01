@@ -2,15 +2,18 @@ class Player extends Phaser.Sprite {
     constructor(game, x, y, key = 'player', frame = 0) {
         super(game, x, y, key, frame);
 
+        // Set member variables
         this._slowSpeed = 200;
         this._fastSpeed = 400;
         this._isSlow = false;
 
+        // Set player sprite
         this.game.physics.arcade.enable(this);
         this.anchor.set(0.5);
         this.body.collideWorldBounds = true;
         this.game.world.addChild(this);
 
+        // Set aura sprite
         this._aura = new Phaser.Sprite(this.game, 0, 0, 'aura', 0);
         this.game.physics.arcade.enable(this._aura);
         this._aura.anchor.set(0.5);
@@ -28,6 +31,7 @@ class Player extends Phaser.Sprite {
     }
 
     update() {
+        // Move player based on arrow keys and shift key
         let cursors = this.game.input.keyboard.createCursorKeys();
 
         this._isSlow = this.game.input.keyboard.isDown(Phaser.Keyboard.SHIFT);
