@@ -1,4 +1,6 @@
-class Bullet extends Phaser.Sprite {
+import GameSprite from 'objects/GameSprite';
+
+class Bullet extends GameSprite {
     constructor(game, x, y, key, frame) {
         super(game, x, y, key, frame);
 

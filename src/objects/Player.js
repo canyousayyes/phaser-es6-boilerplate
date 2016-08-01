@@ -1,4 +1,6 @@
-class Player extends Phaser.Sprite {
+import GameSprite from 'objects/GameSprite';
+
+class Player extends GameSprite {
     constructor(game, x, y, key = 'player', frame = 0) {
         super(game, x, y, key, frame);
 
@@ -12,6 +14,7 @@ class Player extends Phaser.Sprite {
         this.anchor.set(0.5);
         this.body.collideWorldBounds = true;
         this.game.world.addChild(this);
+        this.setBodyDimension(4, 4);
 
         // Set aura sprite
         this._aura = new Phaser.Sprite(this.game, 0, 0, 'aura', 0);

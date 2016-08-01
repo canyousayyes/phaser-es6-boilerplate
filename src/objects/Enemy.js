@@ -1,6 +1,7 @@
+import GameSprite from 'objects/GameSprite';
 import Bullet from 'objects/Bullet';
 
-class Enemy extends Phaser.Sprite {
+class Enemy extends GameSprite {
     constructor(game, x, y, key, frame) {
         super(game, x, y, key, frame);
 
@@ -9,9 +10,7 @@ class Enemy extends Phaser.Sprite {
 
         // Set physics body to be center of texture
         this.game.physics.arcade.enable(this);
-        this.body.width = this.body.height = 128;
-        this.body.offset.x = (this.width - this.body.width) / 2;
-        this.body.offset.y = (this.height - this.body.height) / 2;
+        this.setBodyDimension(128, 192);
 
         // Center align the texture
         this.anchor.set(0.5);
@@ -22,6 +21,7 @@ class Enemy extends Phaser.Sprite {
         this._bullets = this.game.add.group(this.game.world, 'Bullet', false, true, Phaser.Physics.ARCADE);
         this._bullets.classType = Bullet;
         this._bullets.createMultiple(500, 'red');
+        this._bullets.forEach((bullet) => bullet.setBodyDimension(12, 12));
         this.game.world.bringToTop(this._bullets);
 
         // Health bar sprite
@@ -47,6 +47,9 @@ class Enemy extends Phaser.Sprite {
     }
 
     update() {
+        this._bullets.forEachExists((bullet) => {
+            this.game.debug.body(bullet);
+        });
     }
 
     updateHealthBar() {
