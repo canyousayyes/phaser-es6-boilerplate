@@ -25,6 +25,11 @@ class BattleState extends Phaser.State {
     }
 
     update() {
+        this.game.physics.arcade.overlap(this._player, this._enemy.bullets, this.hitPlayerCallback, null, this);
+    }
+
+    hitPlayerCallback(player, bullet) {
+        this.state.start('GameOverState');
     }
 }
 
