@@ -39,6 +39,7 @@ class Enemy extends GameSprite {
     get bullets() { return this._bullets; }
 
     shoot() {
+        if (!this.alive) { return; }
         let initAngle = this.game.rnd.angle();
         for (let i = 0; i < 18; i++) {
             let bullet = this._bullets.getFirstExists(false);
