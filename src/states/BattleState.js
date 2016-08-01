@@ -33,6 +33,11 @@ class BattleState extends Phaser.State {
             this.checkAuraEnemyDistance(this._player.aura, this._enemy);
         }
 
+        // Win condition
+        if (!this._enemy.alive) {
+            this.state.start('WinState');
+        }
+
         // this.game.debug.body(this._enemy);
         // this.game.debug.body(this._player);
         // this.game.debug.body(this._player.aura);
