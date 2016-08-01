@@ -10,10 +10,21 @@ class Player extends Phaser.Sprite {
         this.anchor.set(0.5);
         this.body.collideWorldBounds = true;
         this.game.world.addChild(this);
+
+        this._aura = new Phaser.Sprite(this.game, 0, 0, 'aura', 0);
+        this.game.physics.arcade.enable(this._aura);
+        this._aura.anchor.set(0.5);
+        this._aura.alpha = 0.5;
+        this._aura.scale.set(2, 2);
+        this.addChild(this._aura);
     }
 
     get speed() {
         return this._isSlow ? this._slowSpeed : this._fastSpeed;
+    }
+
+    get aura() {
+        return this._aura;
     }
 
     update() {
