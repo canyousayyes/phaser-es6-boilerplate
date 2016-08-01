@@ -6,7 +6,7 @@ class Enemy extends Phaser.Sprite {
 
         // Set physics body to be center of texture
         this.game.physics.arcade.enable(this);
-        this.body.width = this.body.height = 96;
+        this.body.width = this.body.height = 128;
         this.body.offset.x = (this.width - this.body.width) / 2;
         this.body.offset.y = (this.height - this.body.height) / 2;
 
