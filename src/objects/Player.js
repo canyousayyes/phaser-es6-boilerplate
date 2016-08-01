@@ -14,7 +14,7 @@ class Player extends Phaser.Sprite {
         this._aura = new Phaser.Sprite(this.game, 0, 0, 'aura', 0);
         this.game.physics.arcade.enable(this._aura);
         this._aura.anchor.set(0.5);
-        this._aura.alpha = 0.5;
+        this._aura.alpha = 0;
         this._aura.scale.set(2, 2);
         this.addChild(this._aura);
     }
@@ -47,6 +47,9 @@ class Player extends Phaser.Sprite {
         }
     }
 
+    updateAuraAlpha(relativeDistance) {
+        this._aura.alpha = 1 - relativeDistance;
+    }
 }
 
 export default Player;
