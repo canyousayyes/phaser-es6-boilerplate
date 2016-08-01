@@ -1,6 +1,6 @@
 class Player extends Phaser.Sprite {
-    constructor(game, x, y) {
-        super(game, x, y, 'player', 0);
+    constructor(game, x, y, key = 'player', frame = 0) {
+        super(game, x, y, key, frame);
 
         this._slowSpeed = 200;
         this._fastSpeed = 400;
