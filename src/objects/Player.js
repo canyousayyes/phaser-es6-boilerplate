@@ -15,7 +15,7 @@ class Player extends Phaser.Sprite {
         return this._isSlow ? this._slowSpeed : this._fastSpeed;
     }
 
-    updateControl() {
+    update() {
         let cursors = this.game.input.keyboard.createCursorKeys();
 
         this._isSlow = this.game.input.keyboard.isDown(Phaser.Keyboard.SHIFT);

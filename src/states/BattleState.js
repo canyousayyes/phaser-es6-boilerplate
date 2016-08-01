@@ -23,7 +23,6 @@ class BattleState extends Phaser.State {
     }
 
     update() {
-        this._player.updateControl();
     }
 }
 
