@@ -5,16 +5,16 @@ class Player extends GameSprite {
         super(game, x, y, key, frame);
 
         // Set member variables
-        this._slowSpeed = 200;
-        this._fastSpeed = 400;
+        this._slowSpeed = 150;
+        this._fastSpeed = 300;
         this._isSlow = false;
 
         // Set player sprite
         this.game.physics.arcade.enable(this);
+        this.setBodyDimension(6, 6);
         this.anchor.set(0.5);
         this.body.collideWorldBounds = true;
         this.game.world.addChild(this);
-        this.setBodyDimension(4, 4);
 
         // Set aura sprite
         this._aura = new Phaser.Sprite(this.game, 0, 0, 'aura', 0);

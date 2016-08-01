@@ -13,7 +13,7 @@ class BattleState extends Phaser.State {
 
     preload() {
         this.game.load.image('red', 'assets/red.png');
-        this.game.load.image('player', 'assets/star.png');
+        this.game.load.image('player', 'assets/heart.png');
         this.game.load.image('aura', 'assets/aura.png');
         this.game.load.image('enemy', 'assets/koraku.png');
     }

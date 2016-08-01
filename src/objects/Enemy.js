@@ -23,7 +23,7 @@ class Enemy extends GameSprite {
         this._bullets = this.game.add.group(this.game.world, 'Bullet', false, true, Phaser.Physics.ARCADE);
         this._bullets.classType = Bullet;
         this._bullets.createMultiple(500, 'red');
-        this._bullets.forEach((bullet) => bullet.setBodyDimension(12, 12));
+        this._bullets.forEach((bullet) => bullet.setBodyDimension(16, 16));
         this.game.world.bringToTop(this._bullets);
 
         // Health bar sprite
