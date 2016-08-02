@@ -1,5 +1,4 @@
 import GameSprite from 'objects/GameSprite';
-import Bullet from 'objects/Bullet';
 
 class Enemy extends GameSprite {
     constructor(game, x, y, key, frame) {
@@ -22,9 +21,6 @@ class Enemy extends GameSprite {
 
         // Create Bullet for that enemy
         this._bullets = this.game.add.group(this.game.world, 'Bullet', false, true, Phaser.Physics.ARCADE);
-        this._bullets.classType = Bullet;
-        this._bullets.createMultiple(500, 'red');
-        this._bullets.forEach((bullet) => bullet.setBodyDimension(16, 16));
         this.game.world.bringToTop(this._bullets);
 
         // Health bar sprite
@@ -32,32 +28,9 @@ class Enemy extends GameSprite {
         this.addChild(healthBar);
         this._healthBar = healthBar;
         this.updateHealthBar();
-
-        // Add time events
-        this.game.time.events.loop(Phaser.Timer.SECOND, this.shoot, this);
-        this.game.time.events.loop(Phaser.Timer.SECOND * 4, this.move, this);
     }
 
     get bullets() { return this._bullets; }
-
-    move() {
-        let angle = this.game.rnd.integerInRange(0, 359);
-        this.game.physics.arcade.velocityFromAngle(angle, 100, this.body.velocity);
-        this.game.time.events.add(Phaser.Timer.SECOND, () => {
-            this.body.velocity.set(0, 0);
-        }, this);
-    }
-
-    shoot() {
-        if (!this.alive) { return; }
-        let initAngle = this.game.rnd.angle();
-        for (let i = 0; i < 18; i++) {
-            let bullet = this._bullets.getFirstExists(false);
-            if (bullet) {
-                bullet.fire(this.position.x, this.position.y, initAngle + i * 20, 100, 0, 0);
-            }
-        }
-    }
 
     update() {
         // this._bullets.forEachExists((bullet) => {

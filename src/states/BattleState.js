@@ -1,5 +1,6 @@
 import Player from 'objects/Player';
 import Enemy from 'objects/Enemy';
+import EnemyBulletRing from 'objects/EnemyBulletRing';
 import Bullet from 'objects/Bullet';
 
 class BattleState extends Phaser.State {
@@ -22,7 +23,7 @@ class BattleState extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         this._player = new Player(this.game, this.game.world.centerX, this.game.world.height - 200);
-        this._enemy = new Enemy(this.game, this.game.world.centerX, this.game.world.centerY - 200, 'enemy', 0);
+        this._enemy = new EnemyBulletRing(this.game, this.game.world.centerX, this.game.world.centerY - 200, 'enemy', 0);
     }
 
     update() {
