@@ -11,6 +11,7 @@ class Enemy extends GameSprite {
         // Set physics body to be center of texture
         this.game.physics.arcade.enable(this);
         this.setBodyDimension(128, 256);
+        this.body.collideWorldBounds = true;
 
         // Center align the texture
         this.anchor.set(0.5);
@@ -34,9 +35,18 @@ class Enemy extends GameSprite {
 
         // Add time events
         this.game.time.events.loop(Phaser.Timer.SECOND, this.shoot, this);
+        this.game.time.events.loop(Phaser.Timer.SECOND * 4, this.move, this);
     }
 
     get bullets() { return this._bullets; }
+
+    move() {
+        let angle = this.game.rnd.integerInRange(0, 359);
+        this.game.physics.arcade.velocityFromAngle(angle, 100, this.body.velocity);
+        this.game.time.events.add(Phaser.Timer.SECOND, () => {
+            this.body.velocity.set(0, 0);
+        }, this);
+    }
 
     shoot() {
         if (!this.alive) { return; }
