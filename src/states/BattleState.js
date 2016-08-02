@@ -44,7 +44,7 @@ class BattleState extends Phaser.State {
     }
 
     hitPlayerCallback() {
-        this.state.start('GameOverState');
+        this.state.start('GameOverState', true, false, this._player.position);
     }
 
     checkAuraEnemyDistance(aura, enemy) {
