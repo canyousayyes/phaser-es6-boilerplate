@@ -30,7 +30,7 @@ class GameOverState extends Phaser.State {
 
         this.game.time.events.add(Phaser.Timer.SECOND * 2, () => {
             this._text = this.game.add.text(32, 32, "Stay Determined ...\nPress Enter to Restart", {
-                fontSize: '32px',
+                font: '24pt "8bitOperator"',
                 fill: '#FFF'
             });
 
