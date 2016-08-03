@@ -12,7 +12,7 @@ class WinState extends Phaser.State {
 
     create() {
         this._text = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 100, "You Win!\nPress Enter to Restart", {
-            fontSize: '32px',
+            font: '24pt "8bitOperator"',
             fill: '#FFF',
             align: 'center'
         });
